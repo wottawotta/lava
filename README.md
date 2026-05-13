@@ -9,6 +9,7 @@ Paste this into your terminal, then run it:
 ```
 curl --proto '=https' --tlsv1.2 -LsSf https://github.com/wottawotta/lava/releases/download/v0.1.0/lava-installer.sh | sh
 ```
+Then type "lava"
 
 ### Windows
 Paste this into your powershell, then run it:
@@ -16,3 +17,4 @@ Paste this into your powershell, then run it:
 ```
 powershell -ExecutionPolicy Bypass -c "irm https://github.com/wottawotta/lava/releases/download/v0.1.0/lava-installer.ps1 | iex"
 ```
+Then type "lava"
