@@ -2,5 +2,11 @@
 name = "lava"
 version = "0.1.0"
 edition = "2024"
+repository = "https://github.com/wottawotta/lava"
 
 [dependencies]
+
+# The profile that 'dist' will build with
+[profile.dist]
+inherits = "release"
+lto = "thin"
