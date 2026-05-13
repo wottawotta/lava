@@ -5,7 +5,7 @@ use std::path::{Path, PathBuf};
 use std::process::Command;
 
 fn main() {
-    println!("welcome to lava, the obsidian vault duplicator!");
+    println!("\n\x1b[1m🌋 welcome to lava, the obsidian vault duplicator! 🌋\x1b[0m\n");
 
     // Get vault path from arguments or prompt
     let args: Vec<String> = env::args().collect();
@@ -14,7 +14,7 @@ fn main() {
     if args.len() > 1 {
         vault_path_str = args[1..].join(" ");
     } else {
-        print!("drag and drop your obsidian vault folder here and press enter:\n> ");
+        print!("\x1b[1mdrag and drop your obsidian vault folder here and press enter:\x1b[0m\n> ");
         io::stdout().flush().unwrap();
         io::stdin()
             .read_line(&mut vault_path_str)
@@ -33,13 +33,11 @@ fn main() {
     let vault_name = vault_path.file_name().unwrap_or_default().to_string_lossy();
     let parent_dir = vault_path.parent().unwrap_or_else(|| Path::new("."));
 
-    println!("\nvault detected: {}", vault_name);
-    println!("what type of duplicate would you like to make?");
-    println!("1) full duplicate (copies everything: notes, files, settings)");
-    println!(
-        "2) template duplicate (copies ONLY extensions, themes, and data (.obsidian), leaves notes behind)"
-    );
-    print!("choose an option (1 or 2): ");
+    println!("\n\x1b[1mvault detected:\x1b[0m {}\n", vault_name);
+    println!("\x1b[1mwhat type of duplicate would you like to make?\x1b[0m");
+    println!("  \x1b[1m1)\x1b[0m full duplicate (copies everything: notes, files, settings)");
+    println!("  \x1b[1m2)\x1b[0m template duplicate (copies ONLY extensions, themes, and data (.obsidian), leaves notes behind)\n");
+    print!("\x1b[1mchoose an option (1 or 2):\x1b[0m ");
     io::stdout().flush().unwrap();
 
     let mut choice = String::new();
@@ -63,13 +61,13 @@ fn main() {
                 .expect("failed to execute cp command");
 
             if status.success() {
-                println!("full duplicate created successfully!");
+                println!("\n\x1b[1m✅ full duplicate created successfully!\x1b[0m\n");
             } else {
-                eprintln!("failed to create full duplicate.");
+                eprintln!("\n\x1b[1m❌ failed to create full duplicate.\x1b[0m\n");
             }
         }
         "2" => {
-            print!("enter the name for the new vault: ");
+            print!("\x1b[1menter the name for the new vault:\x1b[0m ");
             io::stdout().flush().unwrap();
             let mut new_vault_name = String::new();
             io::stdin()
@@ -112,9 +110,9 @@ fn main() {
                 .expect("failed to execute cp command");
 
             if status.success() {
-                println!("✅ template duplicate created successfully!");
+                println!("\n\x1b[1m✅ template duplicate created successfully!\x1b[0m\n");
             } else {
-                eprintln!("❌ failed to copy .obsidian configuration.");
+                eprintln!("\n\x1b[1m❌ failed to copy .obsidian configuration.\x1b[0m\n");
             }
         }
         _ => {
